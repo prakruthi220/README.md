@@ -50,4 +50,4 @@ if __name__ == "__main__":
     main()
 
 git rebase -i HEAD~0
-it push origin branch-name --force
+
