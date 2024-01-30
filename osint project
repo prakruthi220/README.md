@@ -1,0 +1,38 @@
+import shodan
+from ipwhois import IPWhois
+
+def shodan_lookup(api_key, target_ip):
+    try:
+        api = shodan.Shodan(api_key)
+        result = api.host(target_ip)
+
+        print(f"\nShodan Information for IP {target_ip}:\n")
+        print("IP: ", result['ip_str'])
+        print("Organization: ", result.get('org', 'N/A'))
+        print("Operating System: ", result.get('os', 'N/A'))
+
+    except shodan.exception.APIError as e:
+        print(f"Error in Shodan API: {e}")
+
+def whois_lookup(target_ip):
+    try:
+        ipwhois_result = IPWhois(target_ip).lookup_rdap()
+
+        print(f"\nWHOIS Information for IP {target_ip}:\n")
+        print("IP Range: ", ipwhois_result['asn_cidr'])
+        print("ASN: ", ipwhois_result['asn'])
+        print("Organization: ", ipwhois_result['network']['name'])
+        print("Country: ", ipwhois_result['asn_country_code'])
+
+    except Exception as e:
+        print(f"Error in WHOIS lookup: {e}")
+
+def main():
+    shodan_api_key = 'your_shodan_api_key'
+    target_ip = '8.8.8.8'  # Replace with the target IP address
+
+    shodan_lookup(shodan_api_key, target_ip)
+    whois_lookup(target_ip)
+
+if __name__ == "__main__":
+    main()
