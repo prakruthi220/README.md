@@ -1,5 +1,4 @@
 - 👋 Hi, I’m @prakruthi220
-- 👀 I’m interested in cryptography.
 
 <!---
 prakruthi220/prakruthi220 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
